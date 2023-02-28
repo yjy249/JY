@@ -34,9 +34,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str,
-                        default='weights/yolov5s.pt', help='model.pt path(s)')
+                        default='yolov5-streamlit/weights/yolov5s.pt', help='model.pt path(s)')
     parser.add_argument('--source', type=str,
-                        default='data/images', help='source')
+                        default='yolov5-streamlit/data/images', help='source')
     parser.add_argument('--img-size', type=int, default=640,
                         help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float,
@@ -82,8 +82,8 @@ if __name__ == '__main__':
             with st.spinner(text='资源加载中...'):
                 st.sidebar.image(uploaded_file)
                 picture = Image.open(uploaded_file)
-                picture = picture.save(f'data/images/{uploaded_file.name}')
-                opt.source = f'data/images/{uploaded_file.name}'
+                picture = picture.save(f'yolov5-streamlit/data/images/{uploaded_file.name}')
+                opt.source = f'yolov5-streamlit/data/images/{uploaded_file.name}'
         else:
             is_valid = False
     else:
@@ -92,9 +92,9 @@ if __name__ == '__main__':
             is_valid = True
             with st.spinner(text='资源加载中...'):
                 st.sidebar.video(uploaded_file)
-                with open(os.path.join("data", "videos", uploaded_file.name), "wb") as f:
+                with open(os.path.join("yolov5-streamlit/data", "videos", uploaded_file.name), "wb") as f:
                     f.write(uploaded_file.getbuffer())
-                opt.source = f'data/videos/{uploaded_file.name}'
+                opt.source = f'yolov5-streamlit/data/videos/{uploaded_file.name}'
         else:
             is_valid = False
 
